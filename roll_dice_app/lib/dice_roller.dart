@@ -34,7 +34,7 @@ class _DiceRollerState extends State<DiceRoller> {
           onPressed: rollDice,
           child: const Text(
             "Roll Dice",
-            style: const TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white),
           ),
         )
       ],
