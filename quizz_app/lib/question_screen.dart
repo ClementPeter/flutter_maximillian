@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quizz_app/models/quiz_questions.dart';
 
+//Displays question and answer buttons
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({required this.onSelectAnswer, super.key});
 
@@ -11,19 +12,21 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  //dynmamically incrementing the current question and answers
   int currentQuestionIndex = 0;
 
+  //performs function after question is answered
+  //incrementing and passing selected answer to list of answered questions
   void answerQuestion(String selectedAnswer) {
     setState(() {
-      // widget.onSelectAnswer(selectedAnswer);
+      widget.onSelectAnswer(selectedAnswer);
       currentQuestionIndex++;
     });
   }
-  //access the questions List
-  //final currentQuestion = questions[0];
 
   @override
   Widget build(BuildContext context) {
+    //access the questions List
     final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
       width: double.infinity,
@@ -45,15 +48,14 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ),
             const SizedBox(height: 30),
             //map the list of answers to AnserButton
-
             ...currentQuestion.getShuffledAnswers().map((answer) {
               return AnswerButton(
                 answer: answer,
                 onTap: () {
-                  print(":::::$answer:::::");
-                  //print(":::::${currentQuestion.answers}:::::"); //prints same format
+                  print("::answer button clicked:::$answer:::::");
+                  //prints same format
+                  //print(":::::${currentQuestion.answers}:::::");
                   answerQuestion(answer);
-                  widget.onSelectAnswer(answer);
                 },
               );
             })
@@ -64,6 +66,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   }
 }
 
+//reusable button
 class AnswerButton extends StatelessWidget {
   const AnswerButton({
     super.key,

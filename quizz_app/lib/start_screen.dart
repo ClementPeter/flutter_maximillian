@@ -28,11 +28,8 @@ class StartScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           ElevatedButton.icon(
-            icon: const Icon(Icons.arrow_right_alt),
-            // onPressed: () {
-            //   startQuiz();
-            // },
             onPressed: startQuiz, //indirectly calls switch screen
+            icon: const Icon(Icons.arrow_right_alt),
             label: const Text("Start Quiz"),
           )
         ],

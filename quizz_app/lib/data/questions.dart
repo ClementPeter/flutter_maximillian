@@ -12,7 +12,7 @@ class QuizQuestion {
 
     //OR
 
-    final cloneAnswerList = List.of(answers);
+    final cloneAnswerList = List.of(answers); //clones original list
     cloneAnswerList.shuffle();
     List<String> shuffledLAnswerList = cloneAnswerList;
     return shuffledLAnswerList;

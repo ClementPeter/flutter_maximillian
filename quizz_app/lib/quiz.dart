@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app/models/quiz_questions.dart';
 import 'package:quizz_app/question_screen.dart';
+import 'package:quizz_app/result_screen.dart';
 import 'package:quizz_app/start_screen.dart';
 //import 'package:quizz_app/start_screen.dart';
 
@@ -16,7 +17,9 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   var activeScreen = 'start_screen';
 
+  //Holds selected answers
   List<String> selectedAnswers = [];
+
   //will be passed to Start Screen - Lifting state up
   void switchScreen() {
     setState(() {
@@ -24,25 +27,43 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  //will be passed to Question Screen -Lifting state up
+  //will be passed to Question Screen - Lifting state up
+  //add answered question from question screen
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        selectedAnswers = [];
-        activeScreen = 'start_screen';
+        //selectedAnswers = [];
+        activeScreen = 'result_screen';
       });
     }
     print(":selected answers:::$selectedAnswers::::");
   }
 
+  void resetQuiz() {
+    selectedAnswers.clear();
+    setState(() {
+      activeScreen = 'question_screen';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    //holds the current rendered screen
     Widget screenWidget = StartScreen(switchScreen);
 
     if (activeScreen == 'question_screen') {
       setState(() {
         screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
+      });
+    }
+    if (activeScreen == 'result_screen') {
+      setState(() {
+        screenWidget = ResultScreen(
+          resetQuiz,
+          chosenAnswers: selectedAnswers,
+        );
       });
     }
     return MaterialApp(
