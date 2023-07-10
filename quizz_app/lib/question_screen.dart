@@ -12,7 +12,7 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-  //dynmamically incrementing the current question and answers
+  //dynamically incrementing the current question and answers
   int currentQuestionIndex = 0;
 
   //performs function after question is answered
@@ -47,14 +47,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               ),
             ),
             const SizedBox(height: 30),
-            //map the list of answers to AnserButton
+            //map the list of answers to AnswerButton
             ...currentQuestion.getShuffledAnswers().map((answer) {
               return AnswerButton(
                 answer: answer,
                 onTap: () {
-                  print("::answer button clicked:::$answer:::::");
-                  //prints same format
-                  //print(":::::${currentQuestion.answers}:::::");
+                  // print("::answer button clicked:::$answer:::::");
                   answerQuestion(answer);
                 },
               );

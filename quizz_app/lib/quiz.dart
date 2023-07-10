@@ -3,7 +3,6 @@ import 'package:quizz_app/models/quiz_questions.dart';
 import 'package:quizz_app/question_screen.dart';
 import 'package:quizz_app/result_screen.dart';
 import 'package:quizz_app/start_screen.dart';
-//import 'package:quizz_app/start_screen.dart';
 
 //Top most parent widget that passes state changes to Start Screen and question screen
 //Quiz.dart contains UI background for all the other screens
@@ -17,7 +16,7 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   var activeScreen = 'start_screen';
 
-  //Holds selected answers
+  //Holds selected answers from Question screen - passes it's data to result screen
   List<String> selectedAnswers = [];
 
   //will be passed to Start Screen - Lifting state up

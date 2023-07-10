@@ -4,14 +4,15 @@ import 'package:quizz_app/models/quiz_questions.dart';
 import 'package:quizz_app/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  ResultScreen(this.resetQuiz, {required this.chosenAnswers, super.key});
+  const ResultScreen(this.resetQuiz, {required this.chosenAnswers, super.key});
 
-  VoidCallback resetQuiz;
+  final void Function() resetQuiz;
 
   //pass selected answers to chosen answers
   final List<String> chosenAnswers;
 
   //get the contents for result screen to a Map - used to populate QuestionSummary
+
   List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
     for (int i = 0; i < chosenAnswers.length; i++) {
@@ -24,8 +25,6 @@ class ResultScreen extends StatelessWidget {
     }
     return summary;
   }
-
-  //  final summaryData = getSummaryData();
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +52,8 @@ class ResultScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 50),
-            SizedBox(
-              height: 300,
-              child: QuestionsSummary(
-                summaryData: summaryData,
-              ),
+            QuestionsSummary(
+              summaryData: summaryData,
             ),
             const SizedBox(height: 30),
             ElevatedButton.icon(
