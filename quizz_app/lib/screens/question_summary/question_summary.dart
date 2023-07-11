@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:quizz_app/question_summary/summary_item.dart';
+import 'package:quizz_app/screens/question_summary/summary_item.dart';
 
 class QuestionsSummary extends StatelessWidget {
   const QuestionsSummary({required this.summaryData, super.key});
@@ -38,7 +37,7 @@ class QuestionsSummary extends StatelessWidget {
 //
 //
 //
-//Commenting question_identifier ,and summary_item to use the snippet below
+//Commenting the above snippet; to use the snippet below
 
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
@@ -84,13 +83,13 @@ class QuestionsSummary extends StatelessWidget {
 //                         ),
 //                         Text(
 //                           'correct answer: ${data['correct_answers'] as String} ',
-//                           style: GoogleFonts.lato(
+//                           style: const TextStyle(
 //                             color: const Color.fromARGB(219, 239, 131, 243),
 //                           ),
 //                         ),
 //                         Text(
 //                           data['user_answers'] as String,
-//                           style: GoogleFonts.lato(
+//                           style: const TextStyle(
 //                             color: Colors.white,
 //                           ),
 //                         ),

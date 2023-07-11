@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quizz_app/question_summary/question_identifier.dart';
+import 'package:quizz_app/screens/question_summary/question_identifier.dart';
 
 //Question_id and Text conte
 class SummaryItem extends StatelessWidget {
   const SummaryItem({super.key, required this.itemData});
 
-  // final List<Map<String, Object>>itemData;
   final Map<String, Object> itemData;
 
   @override

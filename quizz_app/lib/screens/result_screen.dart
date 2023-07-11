@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quizz_app/models/quiz_questions.dart';
-import 'package:quizz_app/question_summary/question_summary.dart';
+import 'package:quizz_app/screens/question_summary/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen(this.resetQuiz, {required this.chosenAnswers, super.key});
@@ -43,7 +43,7 @@ class ResultScreen extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                'You answered $numofCorrectAnswers of $numTotalQuestions',
+                'You answered $numofCorrectAnswers of $numTotalQuestions question(s)',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.lato(
                   color: Colors.white,
