@@ -15,8 +15,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   //dynamically incrementing the current question and answers
   int currentQuestionIndex = 0;
 
-  //performs function after question is answered
-  //incrementing and passing selected answer to list of answered questions
+  //incrementing question_index/passing selected answer to list<selectedAnswers>
   void answerQuestion(String selectedAnswer) {
     setState(() {
       widget.onSelectAnswer(selectedAnswer);

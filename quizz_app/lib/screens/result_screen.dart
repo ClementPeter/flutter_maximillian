@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quizz_app/models/quiz_questions.dart';
-import 'package:quizz_app/question_summary.dart';
+import 'package:quizz_app/question_summary/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen(this.resetQuiz, {required this.chosenAnswers, super.key});
@@ -43,7 +43,7 @@ class ResultScreen extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                'you answered $numofCorrectAnswers of $numTotalQuestions',
+                'You answered $numofCorrectAnswers of $numTotalQuestions',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.lato(
                   color: Colors.white,
@@ -52,13 +52,11 @@ class ResultScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 50),
-            QuestionsSummary(
-              summaryData: summaryData,
-            ),
+            QuestionsSummary(summaryData: summaryData),
             const SizedBox(height: 30),
             ElevatedButton.icon(
               onPressed: resetQuiz, //indirectly calls switch screen
-              icon: const Icon(Icons.repeat),
+              icon: const Icon(Icons.refresh),
               label: const Text("Reset Quiz"),
             )
           ],
