@@ -8,11 +8,10 @@ class ResultScreen extends StatelessWidget {
 
   final void Function() resetQuiz;
 
-  //pass selected answers to chosen answers
+  //passing data from selectedAnswers to chosenAnswers
   final List<String> chosenAnswers;
 
   //get the contents for result screen to a Map - used to populate QuestionSummary
-
   List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
     for (int i = 0; i < chosenAnswers.length; i++) {
@@ -55,7 +54,8 @@ class ResultScreen extends StatelessWidget {
             QuestionsSummary(summaryData: summaryData),
             const SizedBox(height: 30),
             ElevatedButton.icon(
-              onPressed: resetQuiz, //indirectly calls switch screen
+              onPressed:
+                  resetQuiz, //calls resetQuiz from quiz.dart screen -lifting state up
               icon: const Icon(Icons.refresh),
               label: const Text("Reset Quiz"),
             )

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:quizz_app/quiz.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen(this.startQuiz, {super.key});
@@ -28,7 +27,8 @@ class StartScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           ElevatedButton.icon(
-            onPressed: startQuiz, //indirectly calls switch screen
+            onPressed:
+                startQuiz, //indirectly calls switch screen from quiz screen - lifting state up
             icon: const Icon(Icons.arrow_right_alt),
             label: const Text("Start Quiz"),
           )

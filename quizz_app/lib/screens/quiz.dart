@@ -39,7 +39,7 @@ class _QuizState extends State<Quiz> {
         activeScreen = 'result_screen';
       });
     }
-    print(":selected answers:::$selectedAnswers::::");
+    //print(":selected answers:::$selectedAnswers::::");
   }
 
   void resetQuiz() {
