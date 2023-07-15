@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quizz_app/screens/question_summary/question_identifier.dart';
 
-//Question_id and Text conte
+//Question_id and Text content
 class SummaryItem extends StatelessWidget {
   const SummaryItem({super.key, required this.itemData});
 

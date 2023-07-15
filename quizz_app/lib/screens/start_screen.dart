@@ -27,8 +27,8 @@ class StartScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           ElevatedButton.icon(
-            onPressed:
-                startQuiz, //indirectly calls switch screen from  quiz.dart screen - lifting state up
+            //indirectly calls switch screen from  quiz.dart screen - lifting state up
+            onPressed: startQuiz,
             icon: const Icon(Icons.arrow_right_alt),
             label: const Text("Start Quiz"),
           )

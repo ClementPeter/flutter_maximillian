@@ -11,6 +11,7 @@ class ResultScreen extends StatelessWidget {
   //passing data from selectedAnswers to chosenAnswers
   final List<String> chosenAnswers;
 
+  //prepare the content to be used in question summary screen
   //get the contents for result screen to a Map - used to populate QuestionSummary
   List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
