@@ -43,7 +43,7 @@ class _QuizState extends State<Quiz> {
   }
 
   void resetQuiz() {
-    selectedAnswers.clear();
+    //selectedAnswers.clear(); //Removing this causes range error since app wont know when to reset quiz content to empty
     setState(() {
       activeScreen = 'question_screen';
     });

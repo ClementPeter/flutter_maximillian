@@ -54,8 +54,8 @@ class ResultScreen extends StatelessWidget {
             QuestionsSummary(summaryData: summaryData),
             const SizedBox(height: 30),
             ElevatedButton.icon(
-              onPressed:
-                  resetQuiz, //calls resetQuiz from quiz.dart screen -lifting state up
+              //calls resetQuiz from quiz.dart screen -lifting state up
+              onPressed: resetQuiz,
               icon: const Icon(Icons.refresh),
               label: const Text("Reset Quiz"),
             )
