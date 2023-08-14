@@ -35,7 +35,6 @@ class _QuizState extends State<Quiz> {
 
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        //selectedAnswers = [];
         activeScreen = 'result_screen';
       });
     }
@@ -43,7 +42,9 @@ class _QuizState extends State<Quiz> {
   }
 
   void resetQuiz() {
-    //selectedAnswers.clear(); //Removing this causes range error since app wont know when to reset quiz content to empty
+    //Removing this causes range error since app wont know when to reset quiz content to empty
+    selectedAnswers.clear();
+    //print(selectedAnswers);
     setState(() {
       activeScreen = 'question_screen';
     });
