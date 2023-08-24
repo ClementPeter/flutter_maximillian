@@ -35,20 +35,24 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Expense Tracker'),
-      ),
-      // body: Column(
-      //   children: [
-      //     Text('Chart'),
-      //     Text('Expenses'),
-      //   ],
-      // ),
-      // body: ListView(
-      //   children:
-      //       _registeredExpense.map((expense) => Text(expense.title)).toList(),
-      // ),
-      body: ExpenseList(expense: _registeredExpense),
-    );
+        appBar: AppBar(
+          title: const Text('Expense Tracker'),
+        ),
+        // body: Column(
+        //   children: [
+        //     Text('Chart'),
+        //     Text('Expenses'),
+        //   ],
+        // ),
+        // body: ListView(
+        //   children:
+        //       _registeredExpense.map((expense) => Text(expense.title)).toList(),
+        // ),
+        body: Column(
+          children: [
+            Text('Chart'),
+            Expanded(child: ExpenseList(expense: _registeredExpense)),
+          ],
+        ));
   }
 }
