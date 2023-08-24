@@ -32,11 +32,34 @@ class _ExpensesState extends State<Expenses> {
     )
   ];
 
+  TextEditingController titleController = TextEditingController();
+  //show modal
+  void showBottomModal() {
+    showBottomSheet(
+        context: context,
+        builder: (context) {
+          return Column(
+            children: [
+              TextField(
+                controller: titleController,
+              )
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Expense Tracker'),
+          actions: [
+            IconButton(
+                onPressed: showBottomModal,
+                icon: Icon(
+                  Icons.add,
+                ))
+          ],
         ),
         // body: Column(
         //   children: [
