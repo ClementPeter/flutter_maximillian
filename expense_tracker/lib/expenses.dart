@@ -16,7 +16,7 @@ class _ExpensesState extends State<Expenses> {
       title: 'Travel Trip',
       amount: 1000,
       date: DateTime.now(),
-      category: Category.leisure,
+      category: Category.travel,
     ),
     Expense(
       title: 'Flutter Course',
@@ -51,33 +51,34 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Expense Tracker'),
-          actions: [
-            IconButton(
-                onPressed: showBottomModal,
-                icon: Icon(
-                  Icons.add,
-                ))
-          ],
-        ),
-        // body: Column(
-        //   children: [
-        //     Text('Chart'),
-        //     Text('Expenses'),
-        //   ],
-        // ),
-        // body: ListView(
-        //   children:
-        //       _registeredExpense.map((expense) => Text(expense.title)).toList(),
-        // ),
-        body: Column(
-          children: [
-            Text('Chart'),
-            Expanded(
-              child: ExpenseList(expense: _registeredExpense),
-            ),
-          ],
-        ));
+      appBar: AppBar(
+        title: const Text('Expense Tracker'),
+        actions: [
+          IconButton(
+              onPressed: showBottomModal,
+              icon: Icon(
+                Icons.add,
+              ))
+        ],
+      ),
+      // body: Column(
+      //   children: [
+      //     Text('Chart'),
+      //     Text('Expenses'),
+      //   ],
+      // ),
+      // body: ListView(
+      //   children:
+      //       _registeredExpense.map((expense) => Text(expense.title)).toList(),
+      // ),
+      body: Column(
+        children: [
+          Text('Chart'),
+          Expanded(
+            child: ExpenseList(expense: _registeredExpense),
+          ),
+        ],
+      ),
+    );
   }
 }

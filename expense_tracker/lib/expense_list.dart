@@ -10,20 +10,21 @@ class ExpenseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: expense.length,
-        itemBuilder: (context, index) {
-          //print("list view builder : $index");
-          // return ListTile(
-          //   title: Text(expense[index].title),
-          //   subtitle: Text(expense[index].amount.toString()),
-          //   //tileColor: ColorScheme.,
-          //   // trailing: Row(children: [
-          //   //   Text(expense[index].date);
-          //   // ],),
-          // );
-          return ExpenseItem(
-            expense: expense[index],
-          );
-        });
+      itemCount: expense.length,
+      itemBuilder: (context, index) {
+        //print("list view builder : $index");
+        // return ListTile(
+        //   title: Text(expense[index].title),
+        //   subtitle: Text(expense[index].amount.toString()),
+        //   //tileColor: ColorScheme.,
+        //   // trailing: Row(children: [
+        //   //   Text(expense[index].date);
+        //   // ],),
+        // );
+        return ExpenseItem(
+          expense: expense[index],
+        );
+      },
+    );
   }
 }
