@@ -1,10 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 //For generating uuid for each object instance
 var uuid = const Uuid();
 
 //enum to hold fixed values in our app
-enum Category { food, leisure, travel, work }
+enum Category { food, travel, leisure, work }
+
+const categoryIcon = {
+  Category.food: Icons.lunch_dining,
+  Category.travel: Icons.flight_takeoff,
+  Category.leisure: Icons.movie,
+  Category.work: Icons.work,
+};
 
 class Expense {
   final String id;
