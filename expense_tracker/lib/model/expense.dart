@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
+//Model for expense
+//Expense Model
 //For generating uuid for each object instance
 var uuid = const Uuid();
 
-//enum to hold fixed values in our app
+//enum to hold fixed values in our app - used for our dropdowns and chart
 enum Category { food, travel, leisure, work }
 
-//date formattiing using intl
+//date formattiing using intl - yMMEd - mon, aug 28,2023
 final formatter = DateFormat.yMMMEd();
 
 //mapping enum values to Icons
@@ -34,8 +36,8 @@ class Expense {
     required this.category,
   }) : id = uuid.v4();
 
-  String //getter to fetch formatted date
-      get formattedDate {
+  //getter to fetch formatted date
+  String get formattedDate {
     // return DateFormat.yMMMEd().format(date);
     return formatter.format(date);
   }

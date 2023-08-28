@@ -10,6 +10,9 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
+  //
+  TextEditingController titleController = TextEditingController();
+
   //List of dummy expenses
   final List<Expense> _registeredExpense = [
     Expense(
@@ -32,20 +35,21 @@ class _ExpensesState extends State<Expenses> {
     )
   ];
 
-  TextEditingController titleController = TextEditingController();
   //show modal
-  void showBottomModal() {
-    showBottomSheet(
-        context: context,
-        builder: (context) {
-          return Column(
-            children: [
-              TextField(
-                controller: titleController,
-              )
-            ],
-          );
-        });
+  void _openAddExpenseOverlay() {
+    //print('modal pop up');
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Column(
+          children: [
+            TextField(
+              controller: titleController,
+            )
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -55,10 +59,17 @@ class _ExpensesState extends State<Expenses> {
         title: const Text('Expense Tracker'),
         actions: [
           IconButton(
-              onPressed: showBottomModal,
-              icon: Icon(
-                Icons.add,
-              ))
+            onPressed: _openAddExpenseOverlay,
+            icon: const Icon(Icons.add),
+          )
+        ],
+      ),
+      body: Column(
+        children: [
+          const Text('Chart'),
+          Expanded(
+            child: ExpenseList(expense: _registeredExpense),
+          ),
         ],
       ),
       // body: Column(
@@ -71,14 +82,6 @@ class _ExpensesState extends State<Expenses> {
       //   children:
       //       _registeredExpense.map((expense) => Text(expense.title)).toList(),
       // ),
-      body: Column(
-        children: [
-          Text('Chart'),
-          Expanded(
-            child: ExpenseList(expense: _registeredExpense),
-          ),
-        ],
-      ),
     );
   }
 }

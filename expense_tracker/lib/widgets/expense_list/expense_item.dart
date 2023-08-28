@@ -1,6 +1,7 @@
 import 'package:expense_tracker/model/expense.dart';
 import 'package:flutter/material.dart';
 
+//Expense item - card like UI containing expense item
 class ExpenseItem extends StatelessWidget {
   const ExpenseItem({super.key, required this.expense});
 
@@ -31,9 +32,6 @@ class ExpenseItem extends StatelessWidget {
               Row(
                 children: [
                   Icon(categoryIcon[expense.category]),
-                  // Icon(
-                  //   categoryIcon[expense.category],
-                  // ),
                   const SizedBox(width: 5),
                   Text(expense.formattedDate)
                 ],

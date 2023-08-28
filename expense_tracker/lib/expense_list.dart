@@ -2,6 +2,7 @@ import 'package:expense_tracker/model/expense.dart';
 import 'package:expense_tracker/widgets/expense_list/expense_item.dart';
 import 'package:flutter/material.dart';
 
+//UI to hold scroll List of Items
 class ExpenseList extends StatelessWidget {
   const ExpenseList({super.key, required this.expense});
 
