@@ -1,5 +1,6 @@
 import 'package:expense_tracker/expense_list.dart';
 import 'package:expense_tracker/model/expense.dart';
+import 'package:expense_tracker/new_expense.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -10,7 +11,7 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
-  //
+  //title textController
   TextEditingController titleController = TextEditingController();
 
   //List of dummy expenses
@@ -41,16 +42,70 @@ class _ExpensesState extends State<Expenses> {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return Column(
-          children: [
-            TextField(
-              controller: titleController,
-            )
-          ],
-        );
+        return NewExpense();
       },
     );
   }
+
+  // //show modal
+  // void _openAddExpenseOverlay() {
+  //   //print('modal pop up');
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) {
+  //       return Padding(
+  //         padding: const EdgeInsets.all(16.0),
+  //         child: Column(
+  //           children: [
+  //             //title textfield
+  //             TextField(
+  //               controller: titleController,
+  //               decoration: const InputDecoration(labelText: 'title'),
+  //             ),
+  //             SizedBox(height: 10),
+  //             TextField(
+  //               controller: titleController,
+  //               decoration: const InputDecoration(labelText: 'amount'),
+  //             ),
+  //             SizedBox(height: 20),
+  //             //Dropdown
+  //             // DropdownButton(
+  //             // //   items: [
+  //             // //   //DropdownMenuItem(child: ,)
+  //             // // ],
+  //             //    for(final entry in categoryIcon.entries)
+
+  //             //  onChanged:
+  //             //  ) ,
+
+  //             // Row(
+  //             //   children: [
+  //             //     DropdownButton(items: [
+  //             //       DropdownMenuItem(
+  //             //         child: Text('LEISURE'),
+  //             //       ),
+  //             //       DropdownMenuItem(child: Text('TRAVEL'),)
+  //             //     ], onChanged: (){}),
+  //             //     //DropdownMenuItem(child: child)
+  //             //     //save and cancel button
+  //                 // Row(
+  //                 //   children: [
+  //                 //     Text('cancel'),
+  //                 //     OutlinedButton(
+  //                 //       onPressed: () {},
+  //                 //       child: Text('Save Expense'),
+  //                 //     ),
+  //                 //     //Text('cancel'),
+  //                 //   ],
+  //                 // )
+  //             //   ],
+  //             // )
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
