@@ -1,3 +1,4 @@
+import 'package:expense_tracker/model/expense.dart';
 import 'package:flutter/material.dart';
 
 class NewExpense extends StatefulWidget {
@@ -84,7 +85,9 @@ class _NewExpenseState extends State<NewExpense> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text('Selected Date'),
+                  Text(_selectedDate == null
+                      ? 'No Date Selected'
+                      : formatter.format(_selectedDate!)),
                   IconButton(
                     onPressed: () {
                       print("_selectedDateOnpressed::::$_selectedDate::::");
