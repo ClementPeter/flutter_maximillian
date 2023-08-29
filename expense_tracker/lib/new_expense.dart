@@ -9,42 +9,92 @@ class NewExpense extends StatefulWidget {
 
 class _NewExpenseState extends State<NewExpense> {
   //title and amount text field
-  TextEditingController titleController =
-      TextEditingController(text: 'expense title goes here');
+  TextEditingController titleController = TextEditingController();
   TextEditingController amountController = TextEditingController();
+  DateTime? _selectedDate;
 
-  //show date picker
-  showDatePicker({
-    required BuildContext context,
-    required DateTime Function() initialDate,
-    required DateTime Function() firstDate,
-    required DateTime Function() lastDate,
-  }) {
-    showDatePicker(
+  // //show date picker
+  void _presentDatePicker() async {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1, now.month, now.day);
+
+    final pickedDate = await showDatePicker(
       context: context,
-      initialDate: DateTime.now,
-      firstDate: DateTime.now,
-      lastDate: DateTime.now,
+      initialDate: now,
+      firstDate: firstDate,
+      lastDate: now,
     );
+
+    setState(() {
+      _selectedDate = pickedDate;
+    });
+  }
+
+  // //using .then
+  // DateTime? _selectedDate;
+  // void _presentDatePicker() {
+  //   final now = DateTime.now();
+  //   final firstDate = DateTime(now.year - 1, now.month, now.day);
+
+  //   showDatePicker(
+  //     context: context,
+  //     initialDate: now,
+  //     firstDate: firstDate,
+  //     lastDate: now,
+  //   ).then((value) {
+  //     print("value::::$value::::");
+  //     _selectedDate = value;
+  //     print("_selectedDateTOP::::$_selectedDate::::");
+  //   });
+  // }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    titleController.dispose();
+    amountController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
-        mainAxisSize: MainAxisSize.max,
+        //mainAxisSize: MainAxisSize.max,
         children: [
           //title textfield
           TextField(
             controller: titleController,
             decoration: const InputDecoration(hintText: 'Title'),
           ),
-          TextField(
-            controller: amountController,
-            decoration:
-                const InputDecoration(hintText: 'Amount', prefixText: '\$'),
-            keyboardType: TextInputType.number,
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: amountController,
+                  decoration: const InputDecoration(
+                      hintText: 'Amount', prefixText: '\$ '),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text('Selected Date'),
+                  IconButton(
+                    onPressed: () {
+                      print("_selectedDateOnpressed::::$_selectedDate::::");
+                      _presentDatePicker();
+                    },
+                    icon: const Icon(Icons.calendar_month),
+                  )
+                ],
+              ),
+            ],
           ),
           // Row(
           //   children: [
@@ -70,26 +120,24 @@ class _NewExpenseState extends State<NewExpense> {
                 const Text('Drop down'),
                 const Spacer(),
                 //save and cancel button
-                Expanded(
-                  child: Row(
-                    children: [
-                      TextButton(
-                        child: Text('cancel'),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      const SizedBox(width: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          print('::::${titleController.text}::::');
-                          print('::::${amountController.text}::::');
-                        },
-                        child: const Text('Save Expense'),
-                      ),
-                      //Text('cancel'),
-                    ],
-                  ),
+                Row(
+                  children: [
+                    TextButton(
+                      child: const Text('cancel'),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    const SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        print('::::${titleController.text}::::');
+                        print('::::${amountController.text}::::');
+                      },
+                      child: const Text('Save Expense'),
+                    ),
+                    //Text('cancel'),
+                  ],
                 )
               ],
             ),
