@@ -42,7 +42,7 @@ class _ExpensesState extends State<Expenses> {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return NewExpense();
+        return const NewExpense();
       },
     );
   }

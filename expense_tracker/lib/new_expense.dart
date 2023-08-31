@@ -33,6 +33,13 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  void _showErrorSnackBar() {
+    //Scaffold.of(context).
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Input Error'),
+    ));
+  }
+
   // //Date picker using .then
   // DateTime? _selectedDate;
   // void _presentDatePicker() {
@@ -69,6 +76,8 @@ class _NewExpenseState extends State<NewExpense> {
           TextField(
             controller: titleController,
             decoration: const InputDecoration(hintText: 'Title'),
+            //keyboardAppearance: ,
+            keyboardType: TextInputType.text,
           ),
           const SizedBox(height: 10),
           Row(
@@ -138,7 +147,7 @@ class _NewExpenseState extends State<NewExpense> {
                     )
                     .toList(),
                 onChanged: (value) {
-                  print('drpDwn::: $value:::');
+                  //print('dropDown::: $value:::');
                   if (value == null) {
                     return;
                   }
@@ -161,8 +170,30 @@ class _NewExpenseState extends State<NewExpense> {
                   const SizedBox(width: 10),
                   ElevatedButton(
                     onPressed: () {
-                      print('::::${titleController.text}::::');
-                      print('::::${amountController.text}::::');
+                      // print('::::${titleController.text}::::');
+                      // print('::::${amountController.text}::::');
+                      //Modal Input validation
+                      final enteredAmount =
+                          double.tryParse(amountController.text.trim());
+                      var amountIsInvalid =
+                          enteredAmount == null || enteredAmount <= 0;
+
+                      if (titleController.text.isEmpty ||
+                          amountIsInvalid ||
+                          _selectedDate == null) {
+                        //show error message
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const AlertDialog(
+                              title: Text('Invalid Input'),
+                              content: Text(
+                                'Please make sure a valid title, amount, date and catergory was enntered',
+                              ),
+                            );
+                          },
+                        );
+                      }
                     },
                     child: const Text('Save Expense'),
                   ),
