@@ -36,76 +36,57 @@ class _ExpensesState extends State<Expenses> {
     )
   ];
 
-  //show modal
+  //function to add New Expense
+  void _addExpense(Expense expense) {
+    print("new Expense:::$expense::::");
+    setState(() {
+      _registeredExpense.add(expense);
+    });
+  }
+
+  void _removeExpense(Expense expense) {
+    //get index for undo feature
+    final expenseIndex = _registeredExpense.indexOf(expense);
+
+    setState(() {
+      _registeredExpense.remove(expense);
+    });
+
+    //clearSnackBars stays before the snackbar usage to work
+    ScaffoldMessenger.of(context).clearSnackBars();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text('Expense deleted'),
+        action: SnackBarAction(
+            label: 'undo',
+            onPressed: () {
+              setState(() {
+                //insert removed item with it's index
+                _registeredExpense.insert(expenseIndex, expense);
+              });
+            }),
+      ),
+    );
+
+    //ScaffoldMessenger.of(context).clearSnackBars();
+  }
+
+  //show ModalBottomSheet
   void _openAddExpenseOverlay() {
     //print('modal pop up');
     showModalBottomSheet(
       context: context,
+      barrierLabel: 'modal sheet',
+      //isScrollControlled: true, //Full screen ModalBottomSheet
+      showDragHandle: true,
+      useSafeArea: true,
       builder: (context) {
-        return const NewExpense();
+        return NewExpense(onAddExpense: _addExpense);
       },
     );
   }
-
-  // //show modal
-  // void _openAddExpenseOverlay() {
-  //   //print('modal pop up');
-  //   showModalBottomSheet(
-  //     context: context,
-  //     builder: (context) {
-  //       return Padding(
-  //         padding: const EdgeInsets.all(16.0),
-  //         child: Column(
-  //           children: [
-  //             //title textfield
-  //             TextField(
-  //               controller: titleController,
-  //               decoration: const InputDecoration(labelText: 'title'),
-  //             ),
-  //             SizedBox(height: 10),
-  //             TextField(
-  //               controller: titleController,
-  //               decoration: const InputDecoration(labelText: 'amount'),
-  //             ),
-  //             SizedBox(height: 20),
-  //             //Dropdown
-  //             // DropdownButton(
-  //             // //   items: [
-  //             // //   //DropdownMenuItem(child: ,)
-  //             // // ],
-  //             //    for(final entry in categoryIcon.entries)
-
-  //             //  onChanged:
-  //             //  ) ,
-
-  //             // Row(
-  //             //   children: [
-  //             //     DropdownButton(items: [
-  //             //       DropdownMenuItem(
-  //             //         child: Text('LEISURE'),
-  //             //       ),
-  //             //       DropdownMenuItem(child: Text('TRAVEL'),)
-  //             //     ], onChanged: (){}),
-  //             //     //DropdownMenuItem(child: child)
-  //             //     //save and cancel button
-  //                 // Row(
-  //                 //   children: [
-  //                 //     Text('cancel'),
-  //                 //     OutlinedButton(
-  //                 //       onPressed: () {},
-  //                 //       child: Text('Save Expense'),
-  //                 //     ),
-  //                 //     //Text('cancel'),
-  //                 //   ],
-  //                 // )
-  //             //   ],
-  //             // )
-  //           ],
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +104,10 @@ class _ExpensesState extends State<Expenses> {
         children: [
           const Text('Chart'),
           Expanded(
-            child: ExpenseList(expense: _registeredExpense),
+            child: ExpenseList(
+              expense: _registeredExpense,
+              onRemoveExpense: _removeExpense,
+            ),
           ),
         ],
       ),

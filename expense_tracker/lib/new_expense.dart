@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 //UI for the showModalBottomSheet
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  const NewExpense({super.key, required this.onAddExpense});
+
+  final void Function(Expense expense) onAddExpense;
 
   @override
   State<NewExpense> createState() => _NewExpenseState();
@@ -33,11 +35,46 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  void _showErrorSnackBar() {
-    //Scaffold.of(context).
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Input Error'),
-    ));
+  //submit method
+  void _submitExpenseData() {
+    //Modal Input validation
+    final enteredAmount = double.tryParse(amountController.text.trim());
+    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+
+    if (titleController.text.isEmpty ||
+        amountIsInvalid ||
+        _selectedDate == null) {
+      //show error message
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Invalid Input'),
+            content: const Text(
+              'Please make sure a valid title, amount, date and catergory was entered',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('okay'),
+              )
+            ],
+          );
+        },
+      );
+      return;
+    }
+    widget.onAddExpense(
+      Expense(
+        title: titleController.text.trim(),
+        amount: enteredAmount,
+        date: _selectedDate!,
+        category: _selectedValue,
+      ),
+    );
+    Navigator.pop(context);
   }
 
   // //Date picker using .then
@@ -172,32 +209,10 @@ class _NewExpenseState extends State<NewExpense> {
                     onPressed: () {
                       // print('::::${titleController.text}::::');
                       // print('::::${amountController.text}::::');
-                      //Modal Input validation
-                      final enteredAmount =
-                          double.tryParse(amountController.text.trim());
-                      var amountIsInvalid =
-                          enteredAmount == null || enteredAmount <= 0;
-
-                      if (titleController.text.isEmpty ||
-                          amountIsInvalid ||
-                          _selectedDate == null) {
-                        //show error message
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return const AlertDialog(
-                              title: Text('Invalid Input'),
-                              content: Text(
-                                'Please make sure a valid title, amount, date and catergory was enntered',
-                              ),
-                            );
-                          },
-                        );
-                      }
+                      _submitExpenseData();
                     },
                     child: const Text('Save Expense'),
                   ),
-                  //Text('cancel'),
                 ],
               )
             ],

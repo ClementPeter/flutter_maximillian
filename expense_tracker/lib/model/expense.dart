@@ -8,7 +8,7 @@ import 'package:uuid/uuid.dart';
 var uuid = const Uuid();
 
 //enum to hold fixed values in our app - used for our dropdowns and chart
-enum Category { food, travel, leisure, work }
+enum Category { food, leisure, travel, work }
 
 //date formattiing using intl - yMMEd - mon, aug 28,2023
 final formatter = DateFormat.yMMMEd();
@@ -16,8 +16,8 @@ final formatter = DateFormat.yMMMEd();
 //mapping enum values to Icons
 const categoryIcon = {
   Category.food: Icons.lunch_dining,
-  Category.travel: Icons.flight_takeoff,
   Category.leisure: Icons.movie,
+  Category.travel: Icons.flight_takeoff,
   Category.work: Icons.work,
 };
 
@@ -44,6 +44,6 @@ class Expense {
 
   @override
   String toString() {
-    return "Expense instance : $id";
+    return "Expense instance : $id, $title";
   }
 }
