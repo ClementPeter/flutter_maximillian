@@ -11,9 +11,6 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
-  //title textController
-  TextEditingController titleController = TextEditingController();
-
   //List of dummy expenses
   final List<Expense> _registeredExpense = [
     Expense(
@@ -36,7 +33,7 @@ class _ExpensesState extends State<Expenses> {
     )
   ];
 
-  //function to add New Expense
+  //add New Expense function
   void _addExpense(Expense expense) {
     print("new Expense:::$expense::::");
     setState(() {
@@ -44,12 +41,15 @@ class _ExpensesState extends State<Expenses> {
     });
   }
 
+  //remove expense function
   void _removeExpense(Expense expense) {
     //get index for undo feature
     final expenseIndex = _registeredExpense.indexOf(expense);
 
+    //remove item
     setState(() {
       _registeredExpense.remove(expense);
+      return;
     });
 
     //clearSnackBars stays before the snackbar usage to work
@@ -60,17 +60,17 @@ class _ExpensesState extends State<Expenses> {
         duration: const Duration(seconds: 3),
         content: const Text('Expense deleted'),
         action: SnackBarAction(
-            label: 'undo',
-            onPressed: () {
-              setState(() {
-                //insert removed item with it's index
-                _registeredExpense.insert(expenseIndex, expense);
-              });
-            }),
+          label: 'undo',
+          onPressed: () {
+            setState(() {
+              print('::undo::');
+              //insert removed item back using it's index
+              _registeredExpense.insert(expenseIndex, expense);
+            });
+          },
+        ),
       ),
     );
-
-    //ScaffoldMessenger.of(context).clearSnackBars();
   }
 
   //show ModalBottomSheet
@@ -78,7 +78,6 @@ class _ExpensesState extends State<Expenses> {
     //print('modal pop up');
     showModalBottomSheet(
       context: context,
-      barrierLabel: 'modal sheet',
       //isScrollControlled: true, //Full screen ModalBottomSheet
       showDragHandle: true,
       useSafeArea: true,
@@ -90,9 +89,22 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('No expense found, Start adding some'),
+    );
+    if (_registeredExpense.isNotEmpty) {
+      mainContent = ExpenseList(
+        expense: _registeredExpense,
+        onRemoveExpense: _removeExpense,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Expense Tracker'),
+        title: Text(
+          'Expense Tracker',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
         actions: [
           IconButton(
             onPressed: _openAddExpenseOverlay,
@@ -103,12 +115,14 @@ class _ExpensesState extends State<Expenses> {
       body: Column(
         children: [
           const Text('Chart'),
-          Expanded(
-            child: ExpenseList(
-              expense: _registeredExpense,
-              onRemoveExpense: _removeExpense,
-            ),
-          ),
+          Expanded(child: mainContent),
+          //if you use my expense List implementation
+          // Expanded(
+          //   child: ExpenseList(
+          //     expense: _registeredExpense,
+          //     onRemoveExpense: _removeExpense,
+          //   ),
+          // ),
         ],
       ),
       // body: Column(

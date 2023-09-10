@@ -72,7 +72,8 @@ class AnswerButton extends StatelessWidget {
   });
 
   final String answer;
-  final void Function() onTap;
+  final VoidCallback onTap;
+  // OR //final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {

@@ -18,7 +18,7 @@ class _NewExpenseState extends State<NewExpense> {
   DateTime? _selectedDate;
   Category _selectedValue = Category.food;
 
-  // //show date picker
+  ///show date picker
   void _presentDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 1, now.month, now.day);
@@ -51,7 +51,7 @@ class _NewExpenseState extends State<NewExpense> {
           return AlertDialog(
             title: const Text('Invalid Input'),
             content: const Text(
-              'Please make sure a valid title, amount, date and catergory was entered',
+              'Please make sure a valid title, amount, date and category was entered',
             ),
             actions: [
               TextButton(
@@ -66,6 +66,7 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return;
     }
+    //passing data back to onAddExpense
     widget.onAddExpense(
       Expense(
         title: titleController.text.trim(),
@@ -107,13 +108,11 @@ class _NewExpenseState extends State<NewExpense> {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
-        //mainAxisSize: MainAxisSize.max,
         children: [
           //title textfield
           TextField(
             controller: titleController,
             decoration: const InputDecoration(hintText: 'Title'),
-            //keyboardAppearance: ,
             keyboardType: TextInputType.text,
           ),
           const SizedBox(height: 10),
@@ -148,29 +147,10 @@ class _NewExpenseState extends State<NewExpense> {
               ),
             ],
           ),
-
           const SizedBox(height: 20),
-          // Row(
-          //   children: [
-          //     //amount textfield
-          // TextField(
-          //   controller: titleController,
-          //   decoration: const InputDecoration(hintText: 'Title'),
-          // ),
-          //     const Spacer(),
-          //     //date picker
-          //     DatePickerDialog(
-          //       initialDate: DateTime.now(),
-          //       firstDate: DateTime.now(),
-          //       lastDate: DateTime.now(),
-          //     )
-          //     //showDatePicker(context: context, initialDate: initialDate, firstDate: firstDate, lastDate: lastDate)
-          //   ],
-          // ),
           //Dropdown
           Row(
             children: [
-              //const Text('Drop down'),
               DropdownButton(
                 value: _selectedValue,
                 items: Category.values
