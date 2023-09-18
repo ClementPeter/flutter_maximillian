@@ -92,6 +92,7 @@ class _ExpensesState extends State<Expenses> {
     Widget mainContent = const Center(
       child: Text('No expense found, Start adding some'),
     );
+
     if (_registeredExpense.isNotEmpty) {
       mainContent = ExpenseList(
         expense: _registeredExpense,
