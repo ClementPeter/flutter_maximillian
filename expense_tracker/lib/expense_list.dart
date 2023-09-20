@@ -1,7 +1,6 @@
 import 'package:expense_tracker/main.dart';
 import 'package:expense_tracker/model/expense.dart';
 import 'package:expense_tracker/widgets/expense_list/expense_item.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 // //UI to hold scroll List of Items
@@ -28,8 +27,11 @@ class ExpenseList extends StatelessWidget {
           //background: Container(color: kColorScheme.error.withOpacity(0.75)),
           background: Container(
             height: 10,
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            //margin: const EdgeInsets.symmetric(horizontal: 10),
+            margin: Theme.of(context).cardTheme.margin,
+            // margin: EdgeInsets.symmetric(
+            //     horizontal: Theme.of(context).cardTheme.margin!.horizontal),
+            padding: const EdgeInsets.only(right: 20),
             decoration: BoxDecoration(
               color: kColorScheme.error.withOpacity(0.75),
               borderRadius: BorderRadius.circular(10),

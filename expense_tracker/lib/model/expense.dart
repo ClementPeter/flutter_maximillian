@@ -48,10 +48,32 @@ class Expense {
   }
 }
 
+//Used to generate contents for the Charts
+class ExpenseBucket {
+  const ExpenseBucket({
+    required this.category,
+    required this.expenses,
+  });
 
-// {
-//   'id': '1',
-//   'title' : 'todo1',
-//   'description' : 'todo 1 here',
-//   'isCompleted' : true
-// }
+  final Category category;
+  final List<Expense> expenses;
+
+  //named constructor to filter expense by category
+  ExpenseBucket.forCategory(
+      {required List<Expense> allExpenses, required this.category})
+      : expenses = allExpenses
+            .where((expense) => expense.category == category)
+            .toList();
+
+  //getter -> return total sum of expenses amount
+  double get totalExpenses {
+    double sum = 0;
+
+    for (final expense in expenses) {
+      //sum = sum + expense.amount;
+      sum += expense.amount;
+    }
+    print('total expenses $sum');
+    return sum;
+  }
+}
