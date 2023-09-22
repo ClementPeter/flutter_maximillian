@@ -2,7 +2,7 @@ import 'package:expense_tracker/expense_list.dart';
 import 'package:expense_tracker/model/expense.dart';
 import 'package:expense_tracker/new_expense.dart';
 import 'package:expense_tracker/widgets/expense_list/chart/chart.dart';
-import 'package:expense_tracker/widgets/expense_list/chart/chart_bar.dart';
+
 import 'package:flutter/material.dart';
 
 //Main UI screen
