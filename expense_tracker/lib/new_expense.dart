@@ -38,7 +38,7 @@ class _NewExpenseState extends State<NewExpense> {
   ///show date picker
   void _presentDatePicker() async {
     final now = DateTime.now();
-    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    final firstDate = DateTime(now.year - 3, now.month, now.day);
 
     final pickedDate = await showDatePicker(
       context: context,

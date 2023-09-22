@@ -46,7 +46,7 @@ class _ExpensesState extends State<Expenses> {
 
   //remove expense function - snackbar and undo feature
   void _removeExpense(Expense expense) {
-    //get index for undo feature
+    //get index of Item to be removed for undo feature
     final expenseIndex = _registeredExpense.indexOf(expense);
 
     //remove item
