@@ -12,9 +12,13 @@ class QuizQuestion {
 
     //OR
 
-    final cloneAnswerList = List.of(answers); //clones original list
-    cloneAnswerList.shuffle();
-    List<String> shuffledLAnswerList = cloneAnswerList;
-    return shuffledLAnswerList;
+    // final cloneAnswerList = List.of(answers); //clones original list
+    // cloneAnswerList.shuffle();
+    // List<String> shuffledLAnswerList = cloneAnswerList;
+    // return shuffledLAnswerList;
+
+    //OR
+    final clonedShuffledAnswerList = [...answers]..shuffle();
+    return clonedShuffledAnswerList;
   }
 }
