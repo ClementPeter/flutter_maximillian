@@ -5,7 +5,7 @@ void main() {
   runApp(const MyApp());
 }
 
-//used to create various color pallete to be used in our appb-> Light mode color scheme
+//used to create various color pallete to be used in our app-> Light mode color scheme
 ColorScheme kColorScheme =
     ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 96, 59, 181));
 
@@ -51,9 +51,9 @@ class MyApp extends StatelessWidget {
 
       //using theming w/o copyWith involves modifying other values
       // theme: ThemeData(
-      //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      //   scaffoldBackgroundColor: Colors.black,
-      //   useMaterial3: true,
+      // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      // scaffoldBackgroundColor: Colors.black,
+      // useMaterial3: true,
       // ),
 
       //Light theme
