@@ -14,6 +14,7 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
+  //
   //List of dummy expenses
   final List<Expense> _registeredExpense = [
     Expense(
@@ -122,8 +123,6 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          //chart
-          Chart(expenses: _registeredExpense),
           Expanded(child: mainContent),
           //if you use my expense List implementation
           // Expanded(
