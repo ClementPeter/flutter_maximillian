@@ -59,9 +59,10 @@ class ExpenseBucket {
   final List<Expense> expenses;
 
   //named constructor to filter expense by category
-  ExpenseBucket.forCategory(
-      {required List<Expense> allExpenses, required this.category})
-      : expenses = allExpenses
+  ExpenseBucket.forCategory({
+    required List<Expense> allExpenses,
+    required this.category,
+  }) : expenses = allExpenses
             .where((expense) => expense.category == category)
             .toList();
 
@@ -73,6 +74,8 @@ class ExpenseBucket {
       //sum = sum + expense.amount;
       sum += expense.amount;
     }
+
+    print('expensee : $expenses');
     print('total expenses $sum');
     return sum;
   }

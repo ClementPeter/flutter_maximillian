@@ -11,8 +11,10 @@ var uuid = const Uuid();
 enum Category { food, leisure, travel, work }
 
 //date formattiing using intl - yMMEd - mon, aug 28,2023
-final dateFormatter = DateFormat.yMMMEd();
+//final dateFormatter = DateFormat.yMMMEd();
 //final timeFormatter =  TimeOfDay(hour: time.hour, minute: time.minute);
+// DateTime.now().toUtc().toIso8601String(),
+//final dateTimeFormatter = DateTime.now().toUtc().toIso8601String();
 
 //mapping enum values to Icons
 const categoryIcon = {
@@ -26,39 +28,26 @@ class Expense {
   final String id;
   final String title;
   final double amount;
-  final DateTime date;
-  final TimeOfDay time;
+  final String date;
   final Category category;
 
-  //passing uuid as initializer list to ensure it get generated on every object instance
+  //passing uuid & date as initializer list to ensure it get generated on every object instance
   Expense({
     required this.title,
     required this.amount,
-    required this.date,
-    required this.time,
     required this.category,
-  }) : id = uuid.v4();
-
-  //getter to fetch formatted date
-  String get formattedDate {
-    // return DateFormat.yMMMEd().format(date);
-    return dateFormatter.format(date);
-  }
-
-  //getter to fetch formatted time
-  TimeOfDay get formattedTime {
-    final timeFormatter = TimeOfDay(hour: time.hour, minute: time.minute);
-    return timeFormatter;
-  }
+  })  : id = uuid.v4(),
+        date = DateTime.now().toLocal().toIso8601String();
 
   @override
   String toString() {
-    return "Expense instance : $id, $title, $date, $time";
+    return "Expense instance : $id, $title, $date";
   }
 }
 
 //Used to generate contents for the Charts
 class ExpenseBucket {
+  //
   const ExpenseBucket({
     required this.category,
     required this.expenses,
@@ -68,9 +57,10 @@ class ExpenseBucket {
   final List<Expense> expenses;
 
   //named constructor to filter expense by category
-  ExpenseBucket.forCategory(
-      {required List<Expense> allExpenses, required this.category})
-      : expenses = allExpenses
+  ExpenseBucket.forCategory({
+    required List<Expense> allExpenses,
+    required this.category,
+  }) : expenses = allExpenses
             .where((expense) => expense.category == category)
             .toList();
 

@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
 
       //Dark Theme
       darkTheme: ThemeData.dark().copyWith(
-        useMaterial3: true,
         colorScheme:
             kDarkModeColorScheme.copyWith(error: kDarkModeColorScheme.error),
         scaffoldBackgroundColor: kDarkModeColorScheme.background,
@@ -60,7 +59,6 @@ class MyApp extends StatelessWidget {
       //using .copyWith our app theming stays consistent all round
       //and we only modify theme parameters that we need
       theme: ThemeData().copyWith(
-        useMaterial3: true,
         colorScheme: kColorScheme.copyWith(error: kColorScheme.error),
         //scaffoldBackgroundColor: const Color.fromARGB(255, 220, 189, 252),
         scaffoldBackgroundColor: kColorScheme.background,

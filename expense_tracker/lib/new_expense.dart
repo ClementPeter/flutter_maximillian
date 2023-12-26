@@ -83,6 +83,7 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return;
     }
+
     //passing data back to onAddExpense in expense.dart for expense to get added
     widget.onAddExpense(
       Expense(
@@ -97,7 +98,6 @@ class _NewExpenseState extends State<NewExpense> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     titleController.dispose();
     amountController.dispose();
     super.dispose();

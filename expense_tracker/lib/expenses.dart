@@ -81,7 +81,7 @@ class _ExpensesState extends State<Expenses> {
     //print('modal pop up');
     showModalBottomSheet(
       context: context,
-      //isScrollControlled: true, //Full screen ModalBottomSheet
+      isScrollControlled: true, //Full screen ModalBottomSheet
       showDragHandle: true,
       useSafeArea: true,
       builder: (context) {

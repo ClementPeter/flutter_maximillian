@@ -15,38 +15,8 @@ class _NewExpenseState extends State<NewExpense> {
   //title and amount text field
   TextEditingController titleController = TextEditingController();
   TextEditingController amountController = TextEditingController();
-  DateTime? _selectedDate;
-  TimeOfDay? _selectedTime;
+
   Category _selectedValue = Category.food;
-
-  ///show date picker
-  Future<DateTime?> _presentDatePicker() async {
-    final now = DateTime.now();
-    final firstDate = DateTime(now.year - 3, now.month, now.day);
-
-    final pickedDate = await showDatePicker(
-      context: context,
-      initialDate: now,
-      firstDate: firstDate,
-      lastDate: now,
-    );
-
-    setState(() {
-      _selectedDate = pickedDate;
-    });
-    return null;
-  }
-
-  Future<TimeOfDay?> _presentTimePicker() async {
-    final now = TimeOfDay.now();
-    final TimeOfDay? pickedTime =
-        await showTimePicker(context: context, initialTime: now);
-
-    setState(() {
-      _selectedTime = pickedTime;
-    });
-    return null;
-  }
 
   //submit method used in save expense button
   void _submitExpenseData() {
@@ -54,9 +24,7 @@ class _NewExpenseState extends State<NewExpense> {
     final enteredAmount = double.tryParse(amountController.text.trim());
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
 
-    if (titleController.text.isEmpty ||
-        amountIsInvalid ||
-        _selectedDate == null) {
+    if (titleController.text.isEmpty || amountIsInvalid) {
       //show error message
       showDialog(
         context: context,
@@ -64,7 +32,7 @@ class _NewExpenseState extends State<NewExpense> {
           return AlertDialog(
             title: const Text('Invalid Input'),
             content: const Text(
-              'Please make sure a valid title, amount, date and category was entered',
+              'Please make sure a valid title, amount and category was entered',
             ),
             actions: [
               TextButton(
@@ -79,13 +47,12 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return;
     }
+
     //passing data back to onAddExpense in expense.dart for expense to get added
     widget.onAddExpense(
       Expense(
         title: titleController.text.trim(),
         amount: enteredAmount,
-        date: _selectedDate!,
-        time: _selectedTime!,
         category: _selectedValue,
       ),
     );
@@ -94,7 +61,6 @@ class _NewExpenseState extends State<NewExpense> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     titleController.dispose();
     amountController.dispose();
     super.dispose();
@@ -118,40 +84,6 @@ class _NewExpenseState extends State<NewExpense> {
             decoration:
                 const InputDecoration(hintText: 'Amount', prefixText: '\$ '),
             keyboardType: TextInputType.number,
-          ),
-          const SizedBox(width: 10),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              //Date
-              Text(
-                _selectedDate == null
-                    ? 'No Date Selected'
-                    : dateFormatter.format(_selectedDate!),
-              ),
-              IconButton(
-                onPressed: () {
-                  print("_selectedDateOnpressed::::$_selectedDate::::");
-                  _presentDatePicker();
-                },
-                icon: const Icon(Icons.calendar_month),
-              ),
-              const SizedBox(width: 10),
-              //Timme
-              Text(
-                _selectedTime == null
-                    ? 'No Time Selected'
-                    : "${_selectedTime!.hour} : ${_selectedTime!.minute}",
-              ),
-              IconButton(
-                onPressed: () {
-                  //print("_selectedDateOnpressed::::$_selectedDate::::");
-                  _presentTimePicker();
-                },
-                icon: const Icon(Icons.alarm_add),
-              ),
-            ],
           ),
           const SizedBox(height: 20),
           //Dropdown

@@ -1,16 +1,27 @@
+import 'package:my_expense_tracker/main.dart';
 import 'package:my_expense_tracker/model/expense.dart';
 import 'package:flutter/material.dart';
 
 //Expense item - card like UI containing expense item
-class ExpenseItem extends StatelessWidget {
+class ExpenseItem extends StatefulWidget {
   const ExpenseItem({super.key, required this.expense});
 
   final Expense expense;
 
   @override
+  State<ExpenseItem> createState() => _ExpenseItemState();
+}
+
+class _ExpenseItemState extends State<ExpenseItem> {
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: Theme.of(context).cardTheme.margin,
+    return Container(
+      height: 80,
+      decoration: BoxDecoration(
+        color: kColorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      // margin: Theme.of(context).cardTheme.margin,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Row(
@@ -21,11 +32,11 @@ class ExpenseItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  expense.title,
+                  widget.expense.title,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 5),
-                Text(expense.amount.toStringAsFixed(2))
+                Text(widget.expense.amount.toStringAsFixed(2))
               ],
             ),
             Column(
@@ -33,15 +44,16 @@ class ExpenseItem extends StatelessWidget {
                 Row(
                   children: [
                     const Icon(Icons.alarm_add),
-                    const SizedBox(width: 5),
-                    Text(expense.formattedTime.toString().substring(10, 15))
+                    const SizedBox(width: 10),
+                    //Text(expense.formattedDateTime.toString().substring(10, 15))
+                    Text(widget.expense.date.substring(0, 10))
                   ],
                 ),
                 Row(
                   children: [
-                    Icon(categoryIcon[expense.category]),
-                    const SizedBox(width: 5),
-                    Text(expense.formattedDate)
+                    Icon(categoryIcon[widget.expense.category]),
+                    const SizedBox(width: 20),
+                    Text(widget.expense.date.substring(11, 19))
                   ],
                 ),
               ],

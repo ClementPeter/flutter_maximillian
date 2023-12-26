@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:my_expense_tracker/expense_list.dart';
 import 'package:my_expense_tracker/model/expense.dart';
 import 'package:my_expense_tracker/new_expense.dart';
@@ -20,22 +22,22 @@ class _ExpensesState extends State<Expenses> {
     Expense(
       title: 'Travel Trip',
       amount: 100,
-      date: DateTime.now(),
-      time: TimeOfDay.now(),
+      // date: DateTime.now(),
+      // time: TimeOfDay.now(),
       category: Category.travel,
     ),
     Expense(
       title: 'Flutter Course',
       amount: 20,
-      date: DateTime.now(),
-      time: TimeOfDay.now(),
+      // date: DateTime.now(),
+      // time: TimeOfDay.now(),
       category: Category.work,
     ),
     Expense(
       title: 'Cinema ',
       amount: 5,
-      date: DateTime.now(),
-      time: TimeOfDay.now(),
+      // date: DateTime.now(),
+      // time: TimeOfDay.now(),
       category: Category.leisure,
     )
   ];
@@ -85,7 +87,7 @@ class _ExpensesState extends State<Expenses> {
     //print('modal pop up');
     showModalBottomSheet(
       context: context,
-      //isScrollControlled: true, //Full screen ModalBottomSheet
+      //isScrollControlled: true, //Toggle Full screen ModalBottomSheet
       showDragHandle: true,
       useSafeArea: true,
       builder: (context) {
