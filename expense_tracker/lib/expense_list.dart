@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 // //UI to hold scroll List of Items
 class ExpenseList extends StatelessWidget {
-  const ExpenseList(
-      {super.key, required this.expense, required this.onRemoveExpense});
-
   final List<Expense> expense;
   final void Function(Expense expense) onRemoveExpense;
+
+  const ExpenseList(
+      {super.key, required this.expense, required this.onRemoveExpense});
 
   @override
   Widget build(BuildContext context) {

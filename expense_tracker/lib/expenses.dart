@@ -82,8 +82,8 @@ class _ExpensesState extends State<Expenses> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true, //Full screen ModalBottomSheet
-      showDragHandle: true,
-      useSafeArea: true,
+      //showDragHandle: true,
+      //useSafeArea: true,
       builder: (context) {
         return NewExpense(onAddExpense: _addExpense);
       },
@@ -93,7 +93,7 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     Widget mainContent = const Center(
-      child: Text('No expense found, Start adding some'),
+      child: Text('No expense to track, Start adding some'),
     );
 
     if (_registeredExpense.isNotEmpty) {
