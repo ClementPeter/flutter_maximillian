@@ -49,7 +49,8 @@ class Chart extends StatelessWidget {
         vertical: 16,
         horizontal: 8,
       ),
-      width: double.infinity,
+      width: double.infinity, //Hence we need Expanded to avoid
+      //width: 200,
       height: 180,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -74,9 +75,8 @@ class Chart extends StatelessWidget {
                     fill: bucket.totalExpenses == 0
                         ? 0
                         : bucket.totalExpenses / maxTotalExpense,
-                  )
-
-                //ChartBar(fill: 1),
+                  ),
+                // ChartBar(fill: 1),
                 // ChartBar(fill: 0.5),
                 // ChartBar(fill: 0.7),
                 // ChartBar(fill: 0.2),

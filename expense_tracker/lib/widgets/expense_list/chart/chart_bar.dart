@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Contains the UI for the bars in the chart
 class ChartBar extends StatelessWidget {
   const ChartBar({super.key, required this.fill});
 

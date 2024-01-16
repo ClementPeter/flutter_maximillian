@@ -1,13 +1,16 @@
 import 'package:expense_tracker/expenses.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
-//used to create various color pallete to be used in our app-> Light mode color scheme
-ColorScheme kColorScheme =
-    ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 96, 59, 181));
+//used to create various color pallete to be used in our app -> Light mode color scheme
+ColorScheme kColorScheme = ColorScheme.fromSeed(
+  seedColor: const Color.fromARGB(255, 96, 59, 181),
+);
 
 //Dark mode color scheme
 ColorScheme kDarkModeColorScheme = ColorScheme.fromSeed(

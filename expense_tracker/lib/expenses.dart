@@ -92,6 +92,10 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    //Get device dimensions
+    final height = MediaQuery.sizeOf(context).height;
+    final width = MediaQuery.of(context).size.width;
+
     Widget mainContent = const Center(
       child: Text('No expense to track, Start adding some'),
     );
@@ -104,42 +108,95 @@ class _ExpensesState extends State<Expenses> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Expense Tracker',
-          style: Theme.of(context).textTheme.titleLarge,
+        appBar: AppBar(
+          title: Text(
+            'Expense Tracker',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          actions: [
+            IconButton(
+              onPressed: _openAddExpenseOverlay,
+              icon: const Icon(Icons.add),
+            )
+          ],
         ),
-        actions: [
-          IconButton(
-            onPressed: _openAddExpenseOverlay,
-            icon: const Icon(Icons.add),
-          )
-        ],
-      ),
-      body: Column(
-        children: [
-          //chart
-          Chart(expenses: _registeredExpense),
-          Expanded(child: mainContent),
-          //if you use my expense List implementation
-          // Expanded(
-          //   child: ExpenseList(
-          //     expense: _registeredExpense,
-          //     onRemoveExpense: _removeExpense,
-          //   ),
-          // ),
-        ],
-      ),
-      // body: Column(
-      //   children: [
-      //     Text('Chart'),
-      //     Text('Expenses'),
-      //   ],
-      // ),
-      // body: ListView(
-      //   children:
-      //       _registeredExpense.map((expense) => Text(expense.title)).toList(),
-      // ),
-    );
+        //POTRAIT and LANDSCAPE mode
+        body: width < 600
+            ? Column(
+                children: [
+                  Flexible(child: Container(color: Colors.black)),
+                  Flexible(child: Container(color: Colors.blue)),
+                  //Expanded(child: Container(color: Colors.black)),
+                  Flexible(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          fit: FlexFit.tight,
+                          child: Container(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Chart(expenses: _registeredExpense),
+                  // Expanded(child: mainContent)
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Flexible(child: Container(color: Colors.black)),
+                        Flexible(child: Container(color: Colors.red)),
+                        Flexible(child: Container(color: Colors.green)),
+                        Flexible(child: Container(color: Colors.blue)),
+                      ],
+                    ),
+                  ),
+                  Expanded(child: Container(color: Colors.blue)),
+                  Expanded(child: Container(color: Colors.black)),
+
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Flexible(child: Container(color: Colors.black)),
+                        Flexible(child: Container(color: Colors.red)),
+                        Flexible(child: Container(color: Colors.green)),
+                        Flexible(child: Container(color: Colors.blue)),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            : Row(
+                children: [
+                  Expanded(child: Chart(expenses: _registeredExpense)),
+                  Expanded(child: mainContent)
+                ],
+              )
+        // body: Column(
+        //   children: [
+        //     //chart
+        //     Chart(expenses: _registeredExpense),
+        //     Expanded(child: mainContent),
+        //     //if you use my expense List implementation
+        //     // Expanded(
+        //     //   child: ExpenseList(
+        //     //     expense: _registeredExpense,
+        //     //     onRemoveExpense: _removeExpense,
+        //     //   ),
+        //     // ),
+        //   ],
+        // ),
+        // body: Column(
+        //   children: [
+        //     Text('Chart'),
+        //     Text('Expenses'),
+        //   ],
+        // ),
+        // body: ListView(
+        //   children:
+        //       _registeredExpense.map((expense) => Text(expense.title)).toList(),
+        // ),
+        );
   }
 }
