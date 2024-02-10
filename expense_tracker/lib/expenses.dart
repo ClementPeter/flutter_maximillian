@@ -94,8 +94,8 @@ class _ExpensesState extends State<Expenses> {
     //Get device dimensions
     final height = MediaQuery.sizeOf(context).height;
     final width = MediaQuery.of(context).size.width;
-    print(height);
-    print(width);
+    print("Height:::$height::::");
+    print("Width:::$width::::");
 
     Widget mainContent = const Center(
       child: Text('No expense to track, Start adding some'),
@@ -122,29 +122,45 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      //POTRAIT and LANDSCAPE mode
-      // body: width < 600
-      //     ? const Row(
-      //         children: [],
-      //       )
-      //     : const Column(
-      //         children: [],
-      //       ),
+      //PORTRAIT and LANDSCAPE mode
+      body: width < 600
+          //Potrait
+          ? Column(
+              children: [
+                Chart(expenses: _registeredExpense),
+                Expanded(
+                  child: ExpenseList(
+                    expense: _registeredExpense,
+                    onRemoveExpense: (expense) => _removeExpense(expense),
+                  ),
+                ),
+              ],
+            )
+          //Landscape
+          : Row(
+              children: [
+                Chart(expenses: _registeredExpense),
+                ExpenseList(
+                  expense: _registeredExpense,
+                  onRemoveExpense: (expense) => _removeExpense(expense),
+                )
+              ],
+            ),
 
-      body: Column(
-        children: [
-          //chart
-          Chart(expenses: _registeredExpense),
-          Expanded(child: mainContent),
-          //if you use my expense List implementation
-          // Expanded(
-          //   child: ExpenseList(
-          //     expense: _registeredExpense,
-          //     onRemoveExpense: _removeExpense,
-          //   ),
-          // ),
-        ],
-      ),
+      // body: Column(
+      //   children: [
+      //     //chart
+      //     Chart(expenses: _registeredExpense),
+      //     Expanded(child: mainContent),
+      //     //if you use my expense List implementation
+      //     // Expanded(
+      //     //   child: ExpenseList(
+      //     //     expense: _registeredExpense,
+      //     //     onRemoveExpense: _removeExpense,
+      //     //   ),
+      //     // ),
+      //   ],
+      // ),
       // body: Column(
       //   children: [
       //     Text('Chart'),

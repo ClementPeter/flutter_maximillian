@@ -49,7 +49,7 @@ class Chart extends StatelessWidget {
         vertical: 16,
         horizontal: 8,
       ),
-      width: double.infinity, //Hence we need Expanded to avoid
+      width: double.infinity,
       //width: 200,
       height: 180,
       decoration: BoxDecoration(

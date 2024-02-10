@@ -1,14 +1,8 @@
 import 'package:expense_tracker/expenses.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    (value) => runApp(
-      const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 //used to create various color pallete to be used in our app -> Light mode color scheme

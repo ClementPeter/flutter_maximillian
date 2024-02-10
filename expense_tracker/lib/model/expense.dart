@@ -67,8 +67,8 @@ class ExpenseBucket {
       sum += expense.amount;
     }
 
-    print('expensess : $expenses');
-    print('total expenses $sum');
+    // print('expensess : $expenses');
+    // print('total expenses $sum');
     return sum;
   }
 
