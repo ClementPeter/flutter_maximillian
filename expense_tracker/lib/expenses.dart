@@ -139,10 +139,12 @@ class _ExpensesState extends State<Expenses> {
           //Landscape
           : Row(
               children: [
-                Chart(expenses: _registeredExpense),
-                ExpenseList(
-                  expense: _registeredExpense,
-                  onRemoveExpense: (expense) => _removeExpense(expense),
+                Expanded(child: Chart(expenses: _registeredExpense)),
+                Expanded(
+                  child: ExpenseList(
+                    expense: _registeredExpense,
+                    onRemoveExpense: (expense) => _removeExpense(expense),
+                  ),
                 )
               ],
             ),

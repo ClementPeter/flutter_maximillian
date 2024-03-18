@@ -10,7 +10,7 @@ var uuid = const Uuid();
 //enum to hold fixed values in our app - used for our dropdowns and chart
 enum Category { food, leisure, travel, work }
 
-//date formattiing using intl - yMMEd - mon, aug 28,2023
+//date formatting using intl - yMMEd - mon, aug 28,2023
 final formatter = DateFormat.yMMMEd();
 
 //mapping enum values to Icons
@@ -38,7 +38,7 @@ class Expense {
 
   //getter to fetch formatted date
   String get formattedDate {
-    // return DateFormat.yMMMEd().format(date);
+    //return DateFormat.yMMMEd().format(date);
     return formatter.format(date);
   }
 
