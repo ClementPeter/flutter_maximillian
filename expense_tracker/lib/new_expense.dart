@@ -162,7 +162,7 @@ class _NewExpenseState extends State<NewExpense> {
                     )
                     .toList(),
                 onChanged: (value) {
-                  //print('dropDown::: $value:::');
+                  print('dropDown::: $value:::');
                   if (value == null) {
                     return;
                   }
