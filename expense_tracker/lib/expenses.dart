@@ -149,6 +149,7 @@ class _ExpensesState extends State<Expenses> {
               ],
             ),
 
+      //Previous setup in body
       // body: Column(
       //   children: [
       //     //chart
